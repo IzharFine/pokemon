@@ -62,9 +62,7 @@ export const PokedexSeconderySide = ({extraData, pokemonName}) => {
                     {!extraData ? 
                     <Loader />
                     :
-                    <React.Fragment>
-                        <DataSectionsGenerator titleTextArray={dataSectionsModel} />
-                    </React.Fragment>
+                    <DataSectionsGenerator titleTextArray={dataSectionsModel} />
                     }
                 </PanelDisplay>
                 <SeconderyButtonWrapper>

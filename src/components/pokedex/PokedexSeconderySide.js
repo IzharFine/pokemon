@@ -40,7 +40,7 @@ export const PokedexSeconderySide = ({extraData, pokemonName}) => {
         },
         {
             title: 'Evolved to:',
-            text: getEvolvedFromData(extraData?.evolveChain, pokemonName)?.join(', ')
+            text: getEvolveToData(extraData?.evolveChain, pokemonName)?.join(', ')
         },
         {
             title: 'Games:',

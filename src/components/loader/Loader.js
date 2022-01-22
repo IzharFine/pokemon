@@ -1,5 +1,5 @@
 import { Logo, Wrapper } from "./Loader.styled";
-import logo from '../../assests/pokeball.png';
+import logo from '../../assests/images/pokeball.png';
 
 export const Loader = () => {
     return(

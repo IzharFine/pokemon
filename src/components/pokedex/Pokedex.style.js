@@ -2,10 +2,46 @@ import styled from "styled-components";
 import MenuIcon from '@mui/icons-material/Menu';
 import StarIcon from '@mui/icons-material/Star';
 import FolderSpecialIcon from '@mui/icons-material/FolderSpecial';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import PauseIcon from '@mui/icons-material/Pause';
+
+export const Pause = styled(PauseIcon)`
+
+`;
+
+export const Play = styled(PlayArrowIcon)`
+
+`;
 
 export const SeconderyButtonWrapper = styled.div`
     margin-top: 8px;
-    display: inline-flex;
+    display: flex;
+`;
+
+export const SeconderyGreyButton = styled.div`
+    padding: 0px 10px;
+    border-radius: 3px;
+    align-items: center;
+    display: flex;
+    height: 30px;
+    background-color: ${props => props.isplaying === 1 ? props.theme.colors.grey_3 : props.theme.colors.grey_2};
+    cursor: pointer;
+    transition: .15s linear all;
+    box-shadow: ${props => props.isplaying === 1 ? "1px 2px 3px 0px black" : "3px 4px 6px 0px black"};
+    border: 1px solid black;
+
+    &:hover{
+        background-color: ${(props) => props.theme.colors.white};
+    };
+
+    &:active{
+        background-color: ${(props) => props.theme.colors.grey_3};
+        box-shadow: 1px 2px 3px 0px black;
+    };
+
+    ${
+        props => props.style
+    }
 `;
 
 export const SeconderyButton = styled.div`

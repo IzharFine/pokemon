@@ -6,19 +6,25 @@ import {
     ExtraDataSectionTitle, 
     FavoritesFolder,
     SeconderyButton,
-    SeconderyButtonWrapper
+    SeconderyButtonWrapper,
+    SeconderyGreyButton,
+    Play,
+    Pause
  } from './Pokedex.style';
+import { useState } from 'react';
 import { getEvolvedFromData, getEvolveToData } from '../../helpers/pokedexHelper';
 import Loader from '../loader/Loader';
 import React from 'react';
 import appRoutes from '../../appRoutes';
+import pokemonThemePath from '../../assests/sounds/pokemontheme.mp3';
 
 export const PokedexSeconderySide = ({extraData, pokemonName}) => {
+    const [pokemonTheme] = useState(new Audio(pokemonThemePath));
+
     return (
         <SeconderyWrapper>
             <MarginWrapper>
-                <PanelDisplay 
-                    panelHeight={"245px"}
+                <PanelDisplay panelHeight={"245px"}
                     style={{
                         fontSize: "12px",
                         padding: "10px",
@@ -58,6 +64,12 @@ export const PokedexSeconderySide = ({extraData, pokemonName}) => {
                         }}>
                         <FavoritesFolder />
                     </SeconderyButton>
+                    <SeconderyGreyButton isplay={pokemonTheme.paused ? 0 : 1} style={{marginLeft: "auto"}}>
+                        <Play onClick={()=>{pokemonTheme.play();}}/>
+                    </SeconderyGreyButton>
+                    <SeconderyGreyButton>
+                        <Pause onClick={()=>{pokemonTheme.pause();}}/>
+                    </SeconderyGreyButton>
                 </SeconderyButtonWrapper>
             </MarginWrapper>
         </SeconderyWrapper>

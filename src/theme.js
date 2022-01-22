@@ -13,6 +13,7 @@ export const theme = {
         yellow_2: '#afa700',
         grey_1: '#232323',
         grey_2: '#dedede',
+        grey_3: '#808080',
         green_1: '#51ae5f'
     }
 };

@@ -30,6 +30,7 @@ export const Favorites = () => {
       pokemonsExtraDataDic[pokemonName] = currentPokemonName.extraDetails;
     });
 
+    setCurrentPokemonIndex(0);
     setPokemonsBaseData(pokemonsBaseDataArr);
     setPokemonExtraDetails(pokemonsExtraDataDic);
   }, [favoritePokemons]);

@@ -23,19 +23,23 @@ export const Home = () => {
     JSON.parse(localStorage.getItem(FAVORITE_POKEMONS_LOCALSTORAGE_KEY))
   );
 
-  useEffect(async () => {
-    let pokemonBaseData = await getPokemons(1, APPLICATION_MAX_POKEMONS);
-    setPokemonsBaseData(pokemonBaseData);
+  useEffect(() => {
+    let asyncUseEffect = async () => {
+      let pokemonBaseData = await getPokemons(1, APPLICATION_MAX_POKEMONS);
+      setPokemonsBaseData(pokemonBaseData);
 
-    let pokemonExtraData = await getPokemonExtraData();
-    let adapterModel = {
-      pokemonBaseData,
-      pokemonEvolutions: pokemonExtraData[0],
-      pokemonGames: pokemonExtraData[1],
-      pokemonLocations: pokemonExtraData[2],
+      let pokemonExtraData = await getPokemonExtraData();
+      let adapterModel = {
+        pokemonBaseData,
+        pokemonEvolutions: pokemonExtraData[0],
+        pokemonGames: pokemonExtraData[1],
+        pokemonLocations: pokemonExtraData[2],
+      };
+
+      setPokemonExtraDetails(pokemonExtraDataToCardAdapter(adapterModel));
     };
 
-    setPokemonExtraDetails(pokemonExtraDataToCardAdapter(adapterModel));
+    asyncUseEffect();
   }, []);
 
   return pokemonsBaseData === null ? (

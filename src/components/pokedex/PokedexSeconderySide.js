@@ -74,7 +74,7 @@ export const PokedexSeconderySide = ({extraData, pokemonName}) => {
                         }}>
                         <FavoritesFolder />
                     </SeconderyButton>
-                    <SeconderyGreyButton isplay={pokemonTheme.paused ? 0 : 1} style={{marginLeft: "auto"}}>
+                    <SeconderyGreyButton style={{marginLeft: "auto"}}>
                         <Play onClick={()=>{pokemonTheme.play();}}/>
                     </SeconderyGreyButton>
                     <SeconderyGreyButton>

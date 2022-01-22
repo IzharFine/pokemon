@@ -11,7 +11,7 @@ import {
     hanldePokedexOnLeftClick,
     handleOnClickFavorite } from "../../helpers/pokedexHelper";
 
-export default () => {
+export const Home = () => {
     const [pokemonsBaseData, setPokemonsBaseData] = useState(null);
     const [pokemonExtraDetails, setPokemonExtraDetails] = useState({});
     const [currentPokemonIndex, setCurrentPokemonIndex] = useState(0);
@@ -52,3 +52,5 @@ export default () => {
     </Pokedex>
     );
 };
+
+export default Home;

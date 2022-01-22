@@ -1,17 +1,14 @@
 import React, { useState } from "react";
-import { getPokemons, getPokemonExtraData } from '../../services/homeService';
-import Loader from "../../components/loader/Loader";
-import { pokemonExtraDataToCardAdapter } from '../../adapters/pokemonDataAdapter';
 import Pokedex from "../../components/pokedex/Pokedex";
 import { debounce } from '../../utils/utils';
-import { FAVORITE_POKEMONS_LOCALSTORAGE_KEY, APPLICATION_MAX_POKEMONS } from '../../utils/consts';
+import { FAVORITE_POKEMONS_LOCALSTORAGE_KEY } from '../../utils/consts';
 import { 
     handlePokedexSearchChanged, 
     hanldePokedexOnRightClick, 
     hanldePokedexOnLeftClick,
     handleOnClickFavorite } from "../../helpers/pokedexHelper";
 
-export default () => {
+export const Favorites = () => {
     const [pokemonsBaseData, setPokemonsBaseData] = useState(null);
     const [pokemonExtraDetails, setPokemonExtraDetails] = useState({});
     const [currentPokemonIndex, setCurrentPokemonIndex] = useState(0);
@@ -57,3 +54,5 @@ export default () => {
     </Pokedex>
     );
 };
+
+export default Favorites;

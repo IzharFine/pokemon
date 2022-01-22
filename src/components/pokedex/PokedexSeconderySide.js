@@ -13,7 +13,7 @@ import Loader from '../loader/Loader';
 import React from 'react';
 import appRoutes from '../../appRoutes';
 
-export default ({extraData, pokemonName}) => {
+export const PokedexSeconderySide = ({extraData, pokemonName}) => {
     return (
         <SeconderyWrapper>
             <MarginWrapper>
@@ -72,3 +72,5 @@ const DataSection = ({title, children}) => {
         </div>
     );
 }
+
+export default PokedexSeconderySide;

@@ -30,7 +30,7 @@ import {
     SmallDisplayInput
  } from "./Pokedex.style";
 
-export default ({pokemonName, img, onClickRight, onClickLeft, onSearchChanged, onClickFavorite, isFavorite}) => {
+export const PokedexMainSide = ({pokemonName, img, onClickRight, onClickLeft, onSearchChanged, onClickFavorite, isFavorite}) => {
 
     return (
         <MainWrapper>
@@ -90,3 +90,5 @@ export default ({pokemonName, img, onClickRight, onClickLeft, onSearchChanged, o
         </MainWrapper>
     );
 };
+
+export default PokedexMainSide;

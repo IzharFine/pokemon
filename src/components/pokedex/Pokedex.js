@@ -4,7 +4,7 @@ import PokedexMainSide from './PokedexMainSide';
 import { Wrapper } from "./Pokedex.style";
 
 
-export default ({pokemonName, img, onClickRight, onClickLeft, extraData, onSearchChanged, onClickFavorite, isFavorite}) => {
+export const Pokedex = ({pokemonName, img, onClickRight, onClickLeft, extraData, onSearchChanged, onClickFavorite, isFavorite}) => {
     
     return(
     <Wrapper>
@@ -19,3 +19,5 @@ export default ({pokemonName, img, onClickRight, onClickLeft, extraData, onSearc
         <PokedexSeconderySide pokemonName={pokemonName} extraData={extraData} />
     </Wrapper>);
 };
+
+export default Pokedex;

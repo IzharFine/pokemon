@@ -1,9 +1,11 @@
 import { LayoutWrapper } from "./Layout.styled";
 
-export default ({children}) => {
+export const Layout = ({children}) => {
     return(
         <LayoutWrapper>
             {children}
         </LayoutWrapper>
     );
 };
+
+export default Layout;

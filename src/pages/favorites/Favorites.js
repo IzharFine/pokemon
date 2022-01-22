@@ -34,7 +34,9 @@ export default () => {
 
     return(
     pokemonsBaseData === null || pokemonsBaseData.length === 0 ? 
-    <Loader />
+    <div>
+        NO FAVORITES POKEMONS
+    </div>
     :
     <Pokedex
         onClickFavorite={(pokemonName) => {

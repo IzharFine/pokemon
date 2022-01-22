@@ -53,8 +53,9 @@ export default ({extraData, pokemonName}) => {
                 </PanelDisplay>
                 <SeconderyButtonWrapper>
                     <SeconderyButton onClick={()=>{
-                        window.open(appRoutes.favorites)
-                    }}>
+                        if(window.location.pathname !== appRoutes.favorites)
+                            window.open(appRoutes.favorites)
+                        }}>
                         <FavoritesFolder />
                     </SeconderyButton>
                 </SeconderyButtonWrapper>

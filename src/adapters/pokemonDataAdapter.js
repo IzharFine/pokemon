@@ -47,11 +47,14 @@ const handlePokemonEvolutions = (pokemonEvolutions, pokemonCardsModel) => {
 };
 
 const handlePokemonBaseData = (pokemonBaseData, pokemonCardsModel) => {
-    pokemonBaseData.forEach(pokemonData => {
+    pokemonBaseData.forEach((pokemonData, index) => {
         pokemonCardsModel[pokemonData.forms[0].name] = {
             id: pokemonData.id,
             types: pokemonData.types,
-            moves: pokemonData.moves
+            moves: pokemonData.moves,
+            index: index,
+            name: pokemonData.forms[0].name,
+            img: pokemonData.sprites.front_default
         };
     });
 };

@@ -1,18 +1,24 @@
-import React, { useCallback, useState } from "react";
-import { getPokemons, getPokemonExtraData } from './HomeService';
+import React, { useState } from "react";
+import { getPokemons, getPokemonExtraData } from '../../services/homeService';
 import Loader from "../../components/loader/Loader";
 import { pokemonExtraDataToCardAdapter } from '../../adapters/pokemonDataAdapter';
 import Pokedex from "../../components/pokedex/Pokedex";
-
-const POKEMONS_COUNT = 151;
+import { debounce } from '../../utils/utils';
+import { FAVORITE_POKEMONS_LOCALSTORAGE_KEY, APPLICATION_MAX_POKEMONS } from '../../utils/consts';
+import { 
+    handlePokedexSearchChanged, 
+    hanldePokedexOnRightClick, 
+    hanldePokedexOnLeftClick,
+    handleOnClickFavorite } from "../../helpers/pokedexHelper";
 
 export default () => {
     const [pokemonsBaseData, setPokemonsBaseData] = useState(null);
     const [pokemonExtraDetails, setPokemonExtraDetails] = useState({});
     const [currentPokemonIndex, setCurrentPokemonIndex] = useState(0);
+    const [favoritePokemons, setFavoritePokemons] = useState(JSON.parse(localStorage.getItem(FAVORITE_POKEMONS_LOCALSTORAGE_KEY)));
 
     useState(async ()=>{
-        let pokemonBaseData = await getPokemons(1, POKEMONS_COUNT);
+        let pokemonBaseData = await getPokemons(1, APPLICATION_MAX_POKEMONS);
         setPokemonsBaseData(pokemonBaseData);
         
         let pokemonExtraData = await getPokemonExtraData();
@@ -25,44 +31,24 @@ export default () => {
         
         setPokemonExtraDetails(pokemonExtraDataToCardAdapter(adapterModel));
     }, []);
-
-    const hanldePokedexOnRightClick = () => {
-        let nextIndex = currentPokemonIndex + 1;
-        setCurrentPokemonIndex(nextIndex === POKEMONS_COUNT ? 0 : nextIndex);
-    };
-
-    const hanldePokedexOnLeftClick = () => {
-        let nextIndex = currentPokemonIndex - 1;
-        setCurrentPokemonIndex(nextIndex === -1 ? POKEMONS_COUNT - 1 : nextIndex);
-    };
-
-    const handlePokedexSearchChanged = (pokemonName) => {
-        let choosenPokemon = pokemonExtraDetails[pokemonName.toLocaleLowerCase()];
-        if(choosenPokemon)
-            setCurrentPokemonIndex(choosenPokemon.id - 1);
-    };
     
     return(
     pokemonsBaseData === null ? 
     <Loader />
     :
     <Pokedex
-        extraData={
-            pokemonExtraDetails[pokemonsBaseData[currentPokemonIndex].forms[0].name]
-        }
+        onClickFavorite={(pokemonName) => {
+            let favoritesPokemonsToUpdate = handleOnClickFavorite(pokemonName, pokemonExtraDetails, pokemonsBaseData);
+            localStorage.setItem(FAVORITE_POKEMONS_LOCALSTORAGE_KEY, JSON.stringify(favoritesPokemonsToUpdate));
+            setFavoritePokemons(favoritesPokemonsToUpdate);
+        }}
+        extraData={pokemonExtraDetails[pokemonsBaseData[currentPokemonIndex].forms[0].name]}
+        isFavorite={favoritePokemons && favoritePokemons[pokemonsBaseData[currentPokemonIndex].forms[0].name] !== undefined}
         pokemonName={pokemonsBaseData[currentPokemonIndex].forms[0].name} 
         img={pokemonsBaseData[currentPokemonIndex].sprites.front_default}
-        onClickRight={hanldePokedexOnRightClick}
-        onClickLeft={hanldePokedexOnLeftClick}
-        onSearchChanged={(pokemonName) => debounce(() => { handlePokedexSearchChanged(pokemonName) }, 250)}>
+        onClickRight={() => hanldePokedexOnRightClick(currentPokemonIndex, setCurrentPokemonIndex, APPLICATION_MAX_POKEMONS)}
+        onClickLeft={() => hanldePokedexOnLeftClick(currentPokemonIndex, setCurrentPokemonIndex, APPLICATION_MAX_POKEMONS)}
+        onSearchChanged={(pokemonName) => debounce(() => { handlePokedexSearchChanged(pokemonName, setCurrentPokemonIndex, pokemonExtraDetails) }, 250)}>
     </Pokedex>
     );
 };
-
-const debounce = (() => {
-    let timer;
-    return (callback, ms) => {
-        clearTimeout(timer);
-        timer = setTimeout(callback, ms);
-    };
-})();

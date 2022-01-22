@@ -1,6 +1,38 @@
 import styled from "styled-components";
 import MenuIcon from '@mui/icons-material/Menu';
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import StarIcon from '@mui/icons-material/Star';
+import FolderSpecialIcon from '@mui/icons-material/FolderSpecial';
+
+export const SeconderyButtonWrapper = styled.div`
+    margin-top: 8px;
+    display: inline-flex;
+`;
+
+export const SeconderyButton = styled.div`
+    padding: 0px 10px;
+    border-radius: 3px;
+    align-items: center;
+    display: flex;
+    height: 30px;
+    background-color: ${(props) => props.theme.colors.blue_2};
+    cursor: pointer;
+    transition: .15s linear all;
+    box-shadow: 3px 4px 6px 0px black;
+    border: 1px solid black;
+
+    &:hover{
+        background-color: ${(props) => props.theme.colors.blue_4};
+    };
+
+    &:active{
+        background-color: ${(props) => props.theme.colors.blue_5};
+        box-shadow: 1px 2px 3px 0px black;
+    };
+`;
+
+export const FavoritesFolder = styled(FolderSpecialIcon)`
+    color: ${(props) => props.theme.colors.blue_3};
+`;
 
 export const SmallDisplayInput = styled.input`
     background-color: transparent;
@@ -22,7 +54,6 @@ export const MaxSizeScrollDiv = styled.div`
     width: 10px;
     }
 
-
     ::-webkit-scrollbar-track {
     background: #f1f1f1; 
     }
@@ -42,12 +73,14 @@ export const PokemonTitleWrapper = styled.div`
     font-family: arial;
 `;
 
-export const Favorite = styled(FavoriteIcon)`
+export const Favorite = styled(StarIcon)`
     cursor: pointer;
-    margin-left: 5px;
+    margin-left: auto;
+    transition: .55s linear all;
+    color: ${props => props.isfavorite === 1 ? props.theme.colors.yellow_1 : props.theme.colors.white};
 
     &:hover {
-        color: ${(props) => props.theme.colors.red_1};
+        color: ${props => props.isfavorite === 1 ? props.theme.colors.white : props.theme.colors.yellow_1};
     }
 `;
 
@@ -74,7 +107,7 @@ export const Wrapper = styled.div`
 `;
 
 export const SeconderyWrapper = styled.div`
-    background-color: #dc0a2d;
+    background-color: ${(props) => props.theme.colors.red_2};
     width: 250px;
     height: auto;
     border-radius: 0px 5px 5px 0px;
@@ -84,7 +117,7 @@ export const SeconderyWrapper = styled.div`
 `;
 
 export const GamepadUpDownKey = styled.div`
-    background-color: #001b18;
+    background-color: ${(props) => props.theme.colors.blue_1};
     width: 20px;
     height: 25px;
     box-shadow: 3px 4px 2px 0px black;
@@ -92,7 +125,7 @@ export const GamepadUpDownKey = styled.div`
 `;
 
 export const GamepadLeftRightKey = styled.div`
-    background-color: #001b18;
+    background-color: ${(props) => props.theme.colors.blue_1};
     width: 35px;
     height: 20px;
     box-shadow: 3px 4px 2px 0px black;
@@ -131,7 +164,7 @@ export const LineButton = styled.div`
 `;
 
 export const MainBottomSmallDisplay = styled.div`
-    background-color: #51ae5f;
+    background-color: ${(props) => props.theme.colors.green_1};
     height: 42px;
     width: 95px;
     border: 1px solid black;
@@ -146,7 +179,7 @@ export const MainBottomCenter = styled.div`
 `;
 
 export const CircleButton = styled.div`
-    background-color: #001b18;
+    background-color: ${(props) => props.theme.colors.blue_1};
     height: 25px;
     width: 25px;
     border-radius: 25px;
@@ -158,7 +191,7 @@ export const MainBottomLeftButtonWrapper = styled.div`
 `;
 
 export const MarginWrapper = styled.div`
-    margin: 15px 15px 35px 15px;
+    margin: 15px 15px 25px 15px;
 `;
 
 export const MainBottomWrapper = styled.div`
@@ -176,8 +209,12 @@ export const MainPanelBottom = styled.div`
     align-items: center;
 `;
 
+export const ExtraDataSectionTitle = styled.div`
+    text-decoration: underline;
+`;
+
 export const PanelDisplay = styled.div`
-    background-color: #232323;
+    background-color: ${(props) => props.theme.colors.grey_1};
     border: 1px solid black;
     min-width: 185px;
     height: ${props => props.panelHeight};
@@ -196,7 +233,7 @@ export const PanelTopLightsWrapper = styled.div`
 `;
 
 export const MainPanelWrapper = styled.div`
-    background-color: #dedede;
+    background-color: ${(props) => props.theme.colors.grey_2};
     margin-bottom: 15px;
     border-radius: 5px 5px 5px 35px;
     min-height: 175px;
@@ -207,7 +244,7 @@ export const MainPanelWrapper = styled.div`
 `;
 
 export const Content = styled.div`
-    background-color: #dc0a2d; 
+    background-color: ${(props) => props.theme.colors.red_2}; 
     border: 8px double black;
     min-height: 250px;
     border-radius: 0px 0px 5px 5px;
@@ -226,7 +263,7 @@ export const TopWrapper = styled.div`
 
 export const MainTop = styled.div`
     display: flex;
-    background-color: #dc0a2d;
+    background-color: ${(props) => props.theme.colors.red_2};
     padding: 15px 0px 12.5px 15px;
     border: 2px solid black;
     border-bottom: 7px double black;

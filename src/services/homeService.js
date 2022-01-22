@@ -3,8 +3,9 @@ import {
     getPokemonEvolutionsUrlsByOffset,
     getPokemonGamesUrlsByOffset,
     getPokemonLocationsUrlsByOffset 
-} from "../../api/pokemons";
-import { createBaseRequest, baseURL } from '../../api/pokemons';
+} from "../api/pokemons";
+import { sleep } from "../utils/utils";
+import { createBaseRequest, baseURL } from '../api/pokemons';
 
 export const getPokemons = async (startIndex, endIndex) => {
     let requests = [];
@@ -14,10 +15,6 @@ export const getPokemons = async (startIndex, endIndex) => {
     }
 
     return await Promise.all(requests).then(pokemonData => pokemonData.map(p => p.data));
-};
-
-const sleep = ms => {
-    return new Promise(resolve => setTimeout(resolve, ms));
 };
 
 export const getPokemonExtraData = async () => {
@@ -32,7 +29,7 @@ export const getPokemonExtraData = async () => {
     let pokemonEvolutions = getRequestsLoop(pokemonUrls[0].data.results.map(c => c.url));
     let pokemonGames = getRequestsLoop(pokemonUrls[1].data.results.map(c => c.url));
 
-    // Sleep before sending lots of requests - can cause errors from API
+    // Sleep before sending lots of requests - reduce errors from API
     await sleep(1000);
     let pokemonLocations = getRequestsLoop(pokemonUrls[2].data.results.map(c => c.url));
     

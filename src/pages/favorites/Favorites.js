@@ -21,19 +21,22 @@ export default () => {
         let pokemonsBaseDataArr = [];
         let pokemonsExtraDataDic = {};
 
+        if(!favoritePokemons)
+            return;
+
         Object.keys(favoritePokemons).forEach((pokemonName, index) => {
             let currentPokemonName = favoritePokemons[pokemonName];
             currentPokemonName.baseData.index = index;
             pokemonsBaseDataArr.push(currentPokemonName.baseData);
             pokemonsExtraDataDic[pokemonName] = currentPokemonName.extraDetails;
         });
-        
+
         setPokemonsBaseData(pokemonsBaseDataArr);
         setPokemonExtraDetails(pokemonsExtraDataDic);
     }, []);
 
     return(
-    pokemonsBaseData === null || pokemonsBaseData.length === 0 ? 
+    pokemonsBaseData === null || pokemonsBaseData === null || pokemonsBaseData.length === 0 ? 
     <div>
         NO FAVORITES POKEMONS
     </div>

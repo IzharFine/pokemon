@@ -30,24 +30,24 @@ export const PokedexSeconderySide = ({extraData, pokemonName}) => {
                     <Loader />
                     :
                     <React.Fragment>
-                        <DataSection title={'Types:'}>
-                            {extraData?.types.map(t => t.type.name).join(', ')}
-                        </DataSection>
-                        <DataSection title={'Moves:'}>
-                            <MaxSizeScrollDiv>{extraData?.moves.map(t => t.move.name).join(', ')}</MaxSizeScrollDiv>
-                        </DataSection>
-                        <DataSection title={'Locations:'}>
-                            <MaxSizeScrollDiv>{extraData?.locations?.join(', ')}</MaxSizeScrollDiv>
-                        </DataSection>
-                        <DataSection title={'Evolved from:'}>
-                            {getEvolvedFromData(extraData?.evolveChain, pokemonName)?.join(', ')}
-                        </DataSection>
-                        <DataSection title={'Evolve to:'}>
-                            {getEvolveToData(extraData?.evolveChain, pokemonName)?.join(', ')}
-                        </DataSection>
-                        <DataSection title={'Games:'}>
-                            {extraData?.games.join(', ')}
-                        </DataSection>
+                        <DataSection 
+                            title={'Types:'} 
+                            text={extraData?.types.map(t => t.type.name).join(', ')} />
+                        <DataSection 
+                            title={'Moves:'} 
+                            text={extraData?.moves.map(t => t.move.name).join(', ')} />
+                        <DataSection 
+                            title={'Locations:'} 
+                            text={extraData?.locations?.join(', ')} />
+                        <DataSection 
+                            title={'Evolved from:'} 
+                            text={getEvolvedFromData(extraData?.evolveChain, pokemonName)?.join(', ')} />
+                        <DataSection 
+                            title={'Evolved to:'} 
+                            text={getEvolveToData(extraData?.evolveChain, pokemonName)?.join(', ')} />
+                        <DataSection 
+                            title={'Games:'} 
+                            text={extraData?.games.join(', ')} />
                     </React.Fragment>
                     }
                 </PanelDisplay>
@@ -64,11 +64,11 @@ export const PokedexSeconderySide = ({extraData, pokemonName}) => {
     );
 };
 
-const DataSection = ({title, children}) => {
+const DataSection = ({title, text}) => {
     return (
         <div>
             <ExtraDataSectionTitle>{title}</ExtraDataSectionTitle>
-            {children}
+            <MaxSizeScrollDiv>{text}</MaxSizeScrollDiv>
         </div>
     );
 }

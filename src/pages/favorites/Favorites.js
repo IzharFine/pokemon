@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Pokedex from "../../components/pokedex/Pokedex";
 import { debounce } from '../../utils/utils';
 import { FAVORITE_POKEMONS_LOCALSTORAGE_KEY } from '../../utils/consts';
@@ -14,7 +14,7 @@ export const Favorites = () => {
     const [currentPokemonIndex, setCurrentPokemonIndex] = useState(0);
     const [favoritePokemons, setFavoritePokemons] = useState(JSON.parse(localStorage.getItem(FAVORITE_POKEMONS_LOCALSTORAGE_KEY)));
 
-    useState(async ()=>{
+    useEffect(async ()=>{
         let pokemonsBaseDataArr = [];
         let pokemonsExtraDataDic = {};
 

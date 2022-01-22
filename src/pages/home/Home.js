@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { getPokemons, getPokemonExtraData } from '../../services/homeService';
 import Loader from "../../components/loader/Loader";
 import { pokemonExtraDataToCardAdapter } from '../../adapters/pokemonDataAdapter';
@@ -17,7 +17,7 @@ export const Home = () => {
     const [currentPokemonIndex, setCurrentPokemonIndex] = useState(0);
     const [favoritePokemons, setFavoritePokemons] = useState(JSON.parse(localStorage.getItem(FAVORITE_POKEMONS_LOCALSTORAGE_KEY)));
 
-    useState(async ()=>{
+    useEffect(async ()=> {
         let pokemonBaseData = await getPokemons(1, APPLICATION_MAX_POKEMONS);
         setPokemonsBaseData(pokemonBaseData);
         

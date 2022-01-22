@@ -31,7 +31,8 @@ import {
  } from "./Pokedex.style";
 
 export const PokedexMainSide = ({pokemonName, img, onClickRight, onClickLeft, onSearchChanged, onClickFavorite, isFavorite}) => {
-
+    
+    // TODO: Separate to components
     return (
         <MainWrapper>
             <TopWrapper>

@@ -151,7 +151,7 @@ export const SeconderyWrapper = styled.div`
   height: auto;
   border-radius: 0px 5px 5px 0px;
   box-shadow: 3px 4px 12px 0px black;
-  border: 8px double black;
+  border: 9px double black;
   margin-top: 74px;
 `;
 
@@ -279,7 +279,7 @@ export const MainPanelWrapper = styled.div`
 
 export const Content = styled.div`
   background-color: ${(props) => props.theme.colors.red_2};
-  border: 8px double black;
+  border: 9px double black;
   min-height: 250px;
   border-radius: 0px 0px 5px 5px;
 `;

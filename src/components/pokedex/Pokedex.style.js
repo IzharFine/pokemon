@@ -15,6 +15,7 @@ export const SeconderyButtonWrapper = styled.div`
 `;
 
 export const SeconderyGreyButton = styled.div`
+  color: ${(props) => props.theme.colors.grey_4};
   padding: 0px 10px;
   border-radius: 3px;
   align-items: center;
@@ -150,7 +151,7 @@ export const SeconderyWrapper = styled.div`
   height: auto;
   border-radius: 0px 5px 5px 0px;
   box-shadow: 3px 4px 12px 0px black;
-  border: 9px double black;
+  border: 8px double black;
   margin-top: 74px;
 `;
 

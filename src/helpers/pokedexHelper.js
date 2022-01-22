@@ -1,73 +1,92 @@
-import { FAVORITE_POKEMONS_LOCALSTORAGE_KEY, MAX_ALLOWED_FAVORITES } from "../utils/consts";
+import {
+  FAVORITE_POKEMONS_LOCALSTORAGE_KEY,
+  MAX_ALLOWED_FAVORITES,
+} from "../utils/consts";
 
 export const getEvolvedFromData = (evolveChain, currentPokemon) => {
-    if(!evolveChain)
-        return [];
+  if (!evolveChain) return [];
 
-    let output = [];
+  let output = [];
 
-    for(let i = 0 ; i < evolveChain.length ; i++){
-        if(evolveChain[i] === currentPokemon)
-            break;
-        
-        output.push(evolveChain[i]);
-    }
+  for (let i = 0; i < evolveChain.length; i++) {
+    if (evolveChain[i] === currentPokemon) break;
 
-    return output;
+    output.push(evolveChain[i]);
+  }
+
+  return output;
 };
 
 export const getEvolveToData = (evolveChain, currentPokemon) => {
-    if(!evolveChain)
-        return [];
-        
-    let output = [];
-    let currentPokemonIndexInChain = evolveChain.indexOf(currentPokemon);
+  if (!evolveChain) return [];
 
-    for(let i = currentPokemonIndexInChain + 1 ; i < evolveChain.length ; i++){
-        output.push(evolveChain[i]);
-    }
+  let output = [];
+  let currentPokemonIndexInChain = evolveChain.indexOf(currentPokemon);
 
-    return output;
+  for (let i = currentPokemonIndexInChain + 1; i < evolveChain.length; i++) {
+    output.push(evolveChain[i]);
+  }
+
+  return output;
 };
 
-export const hanldePokedexOnRightClick = (currentPokemonIndex, setCurrentPokemonIndex, pokemonsCount) => {
-    let nextIndex = currentPokemonIndex + 1;
-    setCurrentPokemonIndex(nextIndex === pokemonsCount ? 0 : nextIndex);
+export const hanldePokedexOnRightClick = (
+  currentPokemonIndex,
+  setCurrentPokemonIndex,
+  pokemonsCount
+) => {
+  let nextIndex = currentPokemonIndex + 1;
+  setCurrentPokemonIndex(nextIndex === pokemonsCount ? 0 : nextIndex);
 };
 
-export const hanldePokedexOnLeftClick = (currentPokemonIndex, setCurrentPokemonIndex, pokemonsCount) => {
-    let nextIndex = currentPokemonIndex - 1;
-    setCurrentPokemonIndex(nextIndex === -1 ? pokemonsCount - 1 : nextIndex);
+export const hanldePokedexOnLeftClick = (
+  currentPokemonIndex,
+  setCurrentPokemonIndex,
+  pokemonsCount
+) => {
+  let nextIndex = currentPokemonIndex - 1;
+  setCurrentPokemonIndex(nextIndex === -1 ? pokemonsCount - 1 : nextIndex);
 };
 
-export const handlePokedexSearchChanged = (pokemonName, setCurrentPokemonIndex, pokemonExtraDetails) => {
-    let choosenPokemon = pokemonExtraDetails[pokemonName.toLocaleLowerCase()];
-    if(choosenPokemon)
-        setCurrentPokemonIndex(choosenPokemon.index);
+export const handlePokedexSearchChanged = (
+  pokemonName,
+  setCurrentPokemonIndex,
+  pokemonExtraDetails
+) => {
+  let choosenPokemon = pokemonExtraDetails[pokemonName.toLocaleLowerCase()];
+  if (choosenPokemon) setCurrentPokemonIndex(choosenPokemon.index);
 };
 
-export const handleOnClickFavorite = (pokemonName, pokemonExtraDetails, pokemonsBaseData) => {
-    let localStorageFavoritePokemons = localStorage.getItem(FAVORITE_POKEMONS_LOCALSTORAGE_KEY);
+export const handleOnClickFavorite = (
+  pokemonName,
+  pokemonExtraDetails,
+  pokemonsBaseData
+) => {
+  let localStorageFavoritePokemons = localStorage.getItem(
+    FAVORITE_POKEMONS_LOCALSTORAGE_KEY
+  );
 
-    if(localStorageFavoritePokemons)
-        localStorageFavoritePokemons = JSON.parse(localStorageFavoritePokemons);
-    else
-        localStorageFavoritePokemons = {};
+  if (localStorageFavoritePokemons)
+    localStorageFavoritePokemons = JSON.parse(localStorageFavoritePokemons);
+  else localStorageFavoritePokemons = {};
 
-    if(localStorageFavoritePokemons[pokemonName]){
-        delete localStorageFavoritePokemons[pokemonName];
-        return localStorageFavoritePokemons;
-    }
-
-    if(Object.keys(localStorageFavoritePokemons).length === MAX_ALLOWED_FAVORITES)
-        return localStorageFavoritePokemons;
-
-    let choosenPokemonExtraDetails = pokemonExtraDetails[pokemonName.toLocaleLowerCase()];
-    
-    localStorageFavoritePokemons[pokemonName] = {
-        extraDetails: {...choosenPokemonExtraDetails},
-        baseData: {...pokemonsBaseData[choosenPokemonExtraDetails.index]}
-    }
-    
+  if (localStorageFavoritePokemons[pokemonName]) {
+    delete localStorageFavoritePokemons[pokemonName];
     return localStorageFavoritePokemons;
+  }
+
+  if (
+    Object.keys(localStorageFavoritePokemons).length === MAX_ALLOWED_FAVORITES
+  )
+    return localStorageFavoritePokemons;
+
+  let choosenPokemonExtraDetails =
+    pokemonExtraDetails[pokemonName.toLocaleLowerCase()];
+
+  localStorageFavoritePokemons[pokemonName] = {
+    extraDetails: { ...choosenPokemonExtraDetails },
+    baseData: { ...pokemonsBaseData[choosenPokemonExtraDetails.index] },
+  };
+
+  return localStorageFavoritePokemons;
 };

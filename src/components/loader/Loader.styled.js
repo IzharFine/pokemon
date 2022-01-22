@@ -1,12 +1,12 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes } from "styled-components";
 
 export const Wrapper = styled.div`
-    height: 100%;
-    width: 100%;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const Rotate = keyframes`
@@ -16,10 +16,10 @@ const Rotate = keyframes`
 `;
 
 export const Logo = styled.img`
-    height: 7.5vh;
-    min-height: 120px;
-    animation: ${Rotate} 1.5s linear infinite;
-    overflow: hidden;
-    border-radius: 100px;
-    outline: none;
+  height: 7.5vh;
+  min-height: 120px;
+  animation: ${Rotate} 1.5s linear infinite;
+  overflow: hidden;
+  border-radius: 100px;
+  outline: none;
 `;

@@ -17,7 +17,7 @@ export const Favorites = () => {
     JSON.parse(localStorage.getItem(FAVORITE_POKEMONS_LOCALSTORAGE_KEY))
   );
 
-  useEffect(async () => {
+  useEffect(() => {
     let pokemonsBaseDataArr = [];
     let pokemonsExtraDataDic = {};
 
@@ -32,7 +32,7 @@ export const Favorites = () => {
 
     setPokemonsBaseData(pokemonsBaseDataArr);
     setPokemonExtraDetails(pokemonsExtraDataDic);
-  }, []);
+  }, [favoritePokemons]);
 
   return pokemonsBaseData === null ||
     pokemonsBaseData === null ||

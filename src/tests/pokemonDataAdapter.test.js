@@ -3,7 +3,7 @@ import { handleEvolvesTo } from "../adapters/pokemonDataAdapter";
 test("handleEvolvesTo - Send chain with key from the model - Set into name all the chain evolves", () => {
   // Arrange
   let pokemonCardsModel = {
-      "Izhar": {}
+      Izhar: {}
   };
 
   let chain = {
@@ -37,7 +37,7 @@ test("handleEvolvesTo - Send chain with key from the model - Set into name all t
 test("handleEvolvesTo - Send chain without key from the model - Dont set anything", () => {
     // Arrange
     let pokemonCardsModel = {
-        "Adam": {}
+        Adam: {}
     };
   
     let chain = {

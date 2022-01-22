@@ -21,6 +21,33 @@ import pokemonThemePath from '../../assests/sounds/pokemontheme.mp3';
 export const PokedexSeconderySide = ({extraData, pokemonName}) => {
     const [pokemonTheme] = useState(new Audio(pokemonThemePath));
 
+    let dataSectionsModel = [
+        {
+            title: 'Types:',
+            text: extraData?.types.map(t => t.type.name).join(', ')
+        },
+        {
+            title: 'Moves:',
+            text: extraData?.moves.map(t => t.move.name).join(', ')
+        },
+        {
+            title: 'Locations:',
+            text: extraData?.locations?.join(', ')
+        },
+        {
+            title: 'Evolved from:',
+            text: getEvolvedFromData(extraData?.evolveChain, pokemonName)?.join(', ')
+        },
+        {
+            title: 'Evolved to:',
+            text: getEvolvedFromData(extraData?.evolveChain, pokemonName)?.join(', ')
+        },
+        {
+            title: 'Games:',
+            text: extraData?.games.join(', ')
+        }
+    ];
+
     return (
         <SeconderyWrapper>
             <MarginWrapper>
@@ -36,24 +63,7 @@ export const PokedexSeconderySide = ({extraData, pokemonName}) => {
                     <Loader />
                     :
                     <React.Fragment>
-                        <DataSection 
-                            title={'Types:'} 
-                            text={extraData?.types.map(t => t.type.name).join(', ')} />
-                        <DataSection 
-                            title={'Moves:'} 
-                            text={extraData?.moves.map(t => t.move.name).join(', ')} />
-                        <DataSection 
-                            title={'Locations:'} 
-                            text={extraData?.locations?.join(', ')} />
-                        <DataSection 
-                            title={'Evolved from:'} 
-                            text={getEvolvedFromData(extraData?.evolveChain, pokemonName)?.join(', ')} />
-                        <DataSection 
-                            title={'Evolved to:'} 
-                            text={getEvolveToData(extraData?.evolveChain, pokemonName)?.join(', ')} />
-                        <DataSection 
-                            title={'Games:'} 
-                            text={extraData?.games.join(', ')} />
+                        <DataSectionsGenerator titleTextArray={dataSectionsModel} />
                     </React.Fragment>
                     }
                 </PanelDisplay>
@@ -76,6 +86,10 @@ export const PokedexSeconderySide = ({extraData, pokemonName}) => {
     );
 };
 
+const DataSectionsGenerator = ({titleTextArray}) => {
+    return titleTextArray.map(({title, text}, index) => <DataSection key={index} title={title} text={text} />);
+};
+
 const DataSection = ({title, text}) => {
     return (
         <div>
@@ -83,6 +97,6 @@ const DataSection = ({title, text}) => {
             <MaxSizeScrollDiv>{text}</MaxSizeScrollDiv>
         </div>
     );
-}
+};
 
 export default PokedexSeconderySide;

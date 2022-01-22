@@ -36,9 +36,9 @@ export const PokedexMainSide = ({pokemonName, img, onClickRight, onClickLeft, on
             <TopWrapper>
                 <MainTop>
                     <MainBlueLight />
-                    <SmallLight style={{marginLeft: '7.5px'}} lightColor={"red"} lightSize={"10px"} />
-                    <SmallLight style={{marginLeft: '7.5px'}} lightColor={"yellow"} lightSize={"10px"}/>
-                    <SmallLight style={{marginLeft: '7.5px'}} lightColor={"green"} lightSize={"10px"}/>
+                    {["red", "yellow", "green"].map((color, index) => 
+                    <SmallLight key={index} style={{marginLeft: '7.5px'}} lightColor={color} lightSize={"10px"} />)
+                    }
                 </MainTop>
             </TopWrapper>
             <Content>

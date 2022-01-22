@@ -26,8 +26,8 @@ export default () => {
 
         Object.keys(favoritePokemons).forEach((pokemonName, index) => {
             let currentPokemonName = favoritePokemons[pokemonName];
-            currentPokemonName.baseData.index = index;
             pokemonsBaseDataArr.push(currentPokemonName.baseData);
+            currentPokemonName.extraDetails.index = index;
             pokemonsExtraDataDic[pokemonName] = currentPokemonName.extraDetails;
         });
 
@@ -38,7 +38,7 @@ export default () => {
     return(
     pokemonsBaseData === null || pokemonsBaseData === null || pokemonsBaseData.length === 0 ? 
     <div>
-        NO FAVORITES POKEMONS
+        NO FAVORITES POKEMONS 
     </div>
     :
     <Pokedex

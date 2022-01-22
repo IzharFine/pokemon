@@ -59,7 +59,7 @@ const handlePokemonBaseData = (pokemonBaseData, pokemonCardsModel) => {
     });
 };
 
-const handleEvolvesTo = (chain, pokemonCardsModel) => {
+export const handleEvolvesTo = (chain, pokemonCardsModel) => {
     if(!pokemonCardsModel[chain.species.name])
         return;
 

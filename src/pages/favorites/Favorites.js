@@ -35,7 +35,7 @@ export const Favorites = () => {
     return(
     pokemonsBaseData === null || pokemonsBaseData === null || pokemonsBaseData.length === 0 ? 
     <div>
-        NO FAVORITES POKEMONS 
+        NO FAVORITE POKEMONS 
     </div>
     :
     <Pokedex

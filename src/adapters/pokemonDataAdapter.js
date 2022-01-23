@@ -60,8 +60,6 @@ const handlePokemonBaseData = (pokemonBaseData, pokemonCardsModel) => {
 };
 
 export const handleEvolvesTo = (chain, pokemonCardsModel) => {
-  if (!pokemonCardsModel[chain.species.name]) return;
-
   let evolveChain = [];
 
   while (chain) {

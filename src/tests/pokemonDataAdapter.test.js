@@ -71,3 +71,37 @@ test("handleEvolvesTo - Send chain without key from the model - Dont set anythin
   // Assert
   expect(pokemonCardsModel["Adam"]).toEqual({});
 });
+
+test("handleEvolvesTo - Send chain without key from the model - Dont set anything", () => {
+  // Arrange
+  let pokemonCardsModel = {
+    Yakir: {},
+  };
+
+  let chain = {
+    evolves_to: [
+      {
+        evolves_to: [
+          {
+            evolves_to: [],
+            species: {
+              name: "Moshe",
+            },
+          },
+        ],
+        species: {
+          name: "Yakir",
+        },
+      },
+    ],
+    species: {
+      name: "Izhar",
+    },
+  };
+
+  // Act
+  handleEvolvesTo(chain, pokemonCardsModel);
+
+  // Assert
+  expect(pokemonCardsModel["Yakir"].evolveChain).toEqual(["Izhar", "Yakir", "Moshe"]);
+});

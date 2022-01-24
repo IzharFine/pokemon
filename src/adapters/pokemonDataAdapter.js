@@ -64,10 +64,7 @@ export const handleEvolvesTo = (chain, pokemonCardsModel) => {
 
   while (chain) {
     evolveChain.push(chain.species.name);
+    if (pokemonCardsModel[chain.species.name]) pokemonCardsModel[chain.species.name].evolveChain = evolveChain;
     chain = chain.evolves_to[0];
   }
-
-  evolveChain.forEach((p) => {
-    if (pokemonCardsModel[p]) pokemonCardsModel[p].evolveChain = evolveChain;
-  });
 };

@@ -24,10 +24,10 @@ export const Favorites = () => {
     if (!favoritePokemons) return;
 
     Object.keys(favoritePokemons).forEach((pokemonName, index) => {
-      let currentPokemonName = favoritePokemons[pokemonName];
-      pokemonsBaseDataArr.push(currentPokemonName.baseData);
-      currentPokemonName.extraDetails.index = index;
-      pokemonsExtraDataDic[pokemonName] = currentPokemonName.extraDetails;
+      let currentPokemonData = favoritePokemons[pokemonName];
+      pokemonsBaseDataArr.push(currentPokemonData.baseData);
+      currentPokemonData.extraDetails.index = index;
+      pokemonsExtraDataDic[pokemonName] = currentPokemonData.extraDetails;
     });
 
     setCurrentPokemonIndex(0);

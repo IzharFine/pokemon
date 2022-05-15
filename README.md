@@ -1,4 +1,4 @@
-# Pokemon Pokdedex Application
+# Pokemon Pokedex Application
 
 Client by me, API by 3th party.
 

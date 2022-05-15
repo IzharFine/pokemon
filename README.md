@@ -1,6 +1,6 @@
 # Pokemon Pokdedex Application
 
-Created by Izhar Fine.
+Client by me, API by 3th party.
 
 ### `npm start`
 

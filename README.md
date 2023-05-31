@@ -1,6 +1,6 @@
 # Pokemon Pokedex Application
 
-Client by me, API by 3th party.
+Client by me, API by 3th party.\
 Demo: https://izharfine.com/pokedex/
 
 ### `npm start`
